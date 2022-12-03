@@ -59,7 +59,7 @@ public class Appointment {
             if(checkAppointment(appointment)) {
                 System.out.println("Appointment booked");
                 try {
-                    BufferedWriter out = new BufferedWriter(new FileWriter("appointmentList.txt"));
+                    BufferedWriter out = new BufferedWriter(new FileWriter("appointmentList.txt", true));
                     out.write(appointment + "\n");
                     out.close();
                 }
