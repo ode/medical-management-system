@@ -5,12 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
 
 public class Appointment {
-    private String getAppointment;
-    private int appointmentId;
-//    private User user;
-//    private datetime dateTime;
-    private Doctor doctor;
-
     Appointment() {
 
     }
@@ -25,17 +19,18 @@ public class Appointment {
             {
 
                 String[] s = sc.nextLine().split(",");
-                if(s[1] == bitsId) {
+                if(s[1].equals(bitsId)) {
                     app = s.toString();
                     break;
                 }
             }
-            return app;
             sc.close();
+            return app;
         }
         catch(IOException e)
         {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -89,15 +84,11 @@ public class Appointment {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime dateTime = LocalTime.parse(updatedAppointment[4], formatter);
 
-            int count = 0;
-            int numberOfLines = 0;
-
+            boolean check = false;
             while(sc.hasNextLine())
             {
                 String[] s = sc.nextLine().split(",");
                 String dayForCheck = s[3];
-
-                numberOfLines++;
 
                 DateTimeFormatter formatterForFile = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime dateTimeCheck = LocalTime.parse(updatedAppointment[4], formatterForFile);
@@ -106,25 +97,25 @@ public class Appointment {
                     if(dayForCheck.equals(day)) {
                         if(dateTime.isAfter(dateTimeCheck.minusMinutes(10))
                                 && dateTime.isBefore(dateTimeCheck.plusMinutes(10))) {
-                            count++;
+                            check = true;
+                            break;
                         }
                         else {
-                            return false;
+                            check = false;
                         }
                     }
                     else {
-                        return false;
+                        check = false;
                     }
                 }
             }
-            if(count == numberOfLines) {
-                return true;
-            }
             sc.close();
+            return check;
         }
         catch(IOException e)
         {
             e.printStackTrace();
+            return false;
         }
     }
 

@@ -53,18 +53,13 @@ public class Login {
     private boolean checkEmail(String emailAddress) {
         try {
             String email[] = emailAddress.split("@");
-            if(email[1] == "pilani.bits-pilani.ac.in") {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return email[1].equals("pilani.bits-pilani.ac.in");
         }
         catch(Exception e) {
             return false;
         }
     }
-    private boolean checkUser(String emailAddress) throws Exception{
+    private boolean checkUser(String emailAddress) throws IOException{
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");
@@ -81,17 +76,13 @@ public class Login {
                     userFound = false;
                 }
             }
-            if(userFound) {
-                return true;
-            }
-            else {
-                return false;
-            }
             sc.close();
+            return userFound;
         }
         catch(IOException e)
         {
             e.printStackTrace();
+            return false;
         }
     }
 }
