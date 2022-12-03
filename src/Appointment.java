@@ -15,7 +15,7 @@ public class Appointment {
 
     }
 
-    public String getAppointmentDetails(String bitsId) throws Exception{
+    public String getUserAppointmentDetails(String bitsId) throws Exception{
         try
         {
             String app = null;
@@ -134,6 +134,27 @@ public class Appointment {
         // call Notice Board for doctor data
 //        if() {
 //
+//        }
+    }
+    public void getTodayAppointments() throws Exception {
+//        try
+//        {
+            String app = null;
+            FileInputStream fis = new FileInputStream("appointmentList.txt");
+            Scanner sc = new Scanner(fis);
+//            while(sc.hasNextLine())
+//            {
+//                String[] s = sc.nextLine().split(",");
+//                if() {
+//                    app = s.toString();
+//                    break;
+//                }
+//            }
+//            sc.close();
+//        }
+//        catch(IOException e)
+//        {
+//            e.printStackTrace();
 //        }
     }
 }
