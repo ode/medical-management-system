@@ -29,7 +29,7 @@ public class Transaction {
 
 	public void purchase() {
 		// take price from Inventory
-		// call revenue from MedicalStoreOwner class
+		// call revenue from MedicalStoreOwner class - updateRevenue(amount, mode)
 		// total = ;
 	}
 }

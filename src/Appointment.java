@@ -128,7 +128,7 @@ public class Appointment {
         }
     }
 
-    private boolean isDoctorAvailable(String appointment) {
+    private boolean isDoctorAvailable (String appointment) {
         String[] updatedAppointment = appointment.split(",");
         String doctorId = updatedAppointment[2];
         // call Notice Board for doctor data
