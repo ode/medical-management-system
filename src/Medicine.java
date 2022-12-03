@@ -1,16 +1,16 @@
 public class Medicine {
     private String name;
-    private int batchNo;
+    private int id;
     private double unitPrice;
 
-    Medicine(String n, int bno, double pr) {
+    Medicine(String n, int i, double pr) {
         name = n;
-        batchNo = bno;
+        id = i;
         unitPrice = pr;
     }
 
     public String getName() { return name; }
-    public int getBatchNo() { return batchNo; }
+    public int getId() { return id; }
     public double getPrice() { return unitPrice; }
 
     public void updateCount(int count) {
