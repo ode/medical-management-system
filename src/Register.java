@@ -51,8 +51,7 @@ public class Register {
             out.write(getName() + "," + getBitsId() + "," + getEmailAddress() + "," + getPhoneNumber() + "\n");
             out.close();
         }
-        catch(IOException e)
-        {
+        catch(IOException e) {
             e.printStackTrace();
         }
     }
