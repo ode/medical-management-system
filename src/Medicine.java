@@ -14,8 +14,12 @@ public class Medicine {
     public double getPrice() { return unitPrice; }
 
     public void updateCount(int count) {
-        Inventory inv = new Inventory();
-        inv.updateCount(this, count);
+        try {
+            Inventory inv = new Inventory();
+            inv.updateCount(this, count);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
 }
