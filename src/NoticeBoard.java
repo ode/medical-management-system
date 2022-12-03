@@ -1,15 +1,61 @@
-import java.time.LocalDateTime;
+import java.time.*;
+import java.util.*;
+import java.io.*;
 
-public class NoticeBoard {
+class Notice {
     private Doctor doctor;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Day day;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    NoticeBoard(Doctor d, LocalDateTime start, LocalDateTime end) {
+    Notice(Doctor d, Day da, LocalTime start, LocalTime end) {
         doctor = d;
+        day = da;
         startTime = start;
         endTime = end;
     }
 
     
+}
+
+public class NoticeBoard {
+    private ArrayList<Notice> noticeBoard;
+
+    NoticeBoard() throws FileNotFoundException {
+        noticeBoard = new ArrayList<Notice>();
+        File file = new File("noticeboard.txt");
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()) {
+            String[] s = sc.nextLine().split(",");
+            int id = Integer.parseInt(s[0]);
+            // 1001,Dr. Burnwal,OPD,M;T;W;Th;F,10:00;13:00
+            String name = s[1], type = s[2];
+            Doctor doc = new Doctor(id, name, type);
+
+            for (String day: s[3].split(";")) {
+                String[] times = s[4].split(";");
+                LocalTime start = LocalTime.parse(times[0]);
+                LocalTime end = LocalTime.parse(times[1]);
+                Notice notice = new Notice(doc, parseDay(day), start, end);
+                noticeBoard.add(notice);
+            }
+        }
+    }
+
+    public ArrayList<Notice> getNoticeBoard() {
+        return new ArrayList<Notice>(noticeBoard); // copy for safety
+    }
+
+    Day parseDay(String s) {
+        switch (s) {
+            case "M" : return Day.MONDAY;
+            case "T" : return Day.TUESDAY;
+            case "W" : return Day.WEDNESDAY;
+            case "Th": return Day.THURSDAY;
+            case "F" : return Day.FRIDAY;
+            case "S" : return Day.SATURDAY;
+            default  : return Day.SUNDAY;
+        }
+    }
 }

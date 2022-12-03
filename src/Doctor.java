@@ -1,18 +1,16 @@
+import java.time.*;
+
 public class Doctor {
     private int doctorID;
+    private String consultationType;
     private String name;
-    private String email;
-    private String mobileNumber;
 
-    Doctor(int id, String n, String mail, String number) {
+    Doctor(int id, String n, String type) {
         doctorID = id;
         name = n;
-        email = mail;
-        mobileNumber = number;
+        consultationType = type;
     }
     
     public int getID() { return doctorID; }
     public String getName() { return name; }
-    public String getEmail() { return email; }
-    public String getNumber() { return mobileNumber; }
 }
