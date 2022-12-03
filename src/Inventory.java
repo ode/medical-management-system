@@ -6,7 +6,9 @@ public class Inventory {
 
     Inventory() throws FileNotFoundException{
         inventory = new HashMap<Medicine, Integer>();
-        Scanner sc = new Scanner(new File("inventory.txt"));
+        Scanner sc;
+        try { sc = new Scanner(new File("inventory.txt")); }
+        catch (Exception e) {return;}
         while (sc.hasNextLine()) {
             String[] s = sc.nextLine().split(",");
             int id = Integer.parseInt(s[0]);
@@ -28,7 +30,17 @@ public class Inventory {
     }
 
     public void save() {
-        
+        FileWriter fw;
+        try {
+            fw = new FileWriter("inventory.txt");
+
+            for (Map.Entry<Medicine, Integer> entry : inventory.entrySet()) {
+                Medicine medicine = entry.getKey();
+                fw.write(medicine.getId() + "," + medicine.getName() + "," + medicine.getPrice() + "," + entry.getValue() + "\n");
+            }
+        } catch (Exception e) {
+            System.out.println("error saving:" + e);
+        }
     }
 
 }

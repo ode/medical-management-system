@@ -1,9 +1,9 @@
 public class Medicine {
     private String name;
     private int id;
-    private double unitPrice;
+    private int unitPrice;
 
-    Medicine(String n, int i, double pr) {
+    Medicine(String n, int i, int pr) {
         name = n;
         id = i;
         unitPrice = pr;
@@ -11,7 +11,7 @@ public class Medicine {
 
     public String getName() { return name; }
     public int getId() { return id; }
-    public double getPrice() { return unitPrice; }
+    public int getPrice() { return unitPrice; }
 
     public void updateCount(int count) {
         try {
