@@ -47,6 +47,13 @@ public class NoticeBoard {
         return new ArrayList<Notice>(noticeBoard); // copy for safety
     }
 
+    public void showNoticeBoard() throws FileNotFoundException{
+        Scanner file = new Scanner(new File("noticeboard.txt"));
+        while (file.hasNextLine()) {
+            System.out.println(file.nextLine());
+        }
+    }
+
     Day parseDay(String s) {
         switch (s) {
             case "M" : return Day.MONDAY;
