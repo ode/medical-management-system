@@ -1,91 +1,114 @@
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class User {
-    private int bitsID;
-    private String email;
-    private String mobileNum;
+    private String bitsId;
+    private String emailAddress;
+    private long mobileNumber;
     private String name;
-    private String password;
-    User(int id, String n,String num, String mail) {
-        bitsID = id;
-        name = n;
-        mobileNum=num;
-        email = mail;
+    User(String email) {
+        emailAddress = email;
+        try {
+            getUserdetails(emailAddress);
+        }
+        catch(Exception e) {
+            System.out.println("Could not display user functions");
+        }
+
+        System.out.println("Hi User! Please select from the given options");
+        System.out.println("1 - Display Notice Board");
+        System.out.println("2 - View Appointments");
+        System.out.println("3 - Book Appointment");
+        System.out.println("4 - Purchase Medicine");
+
+        Scanner sc = new Scanner(System.in);
+        int choice = Integer.parseInt(sc.nextLine());
+        if(choice == 1) {
+            try {
+                NoticeBoard nub = new NoticeBoard();
+                nub.showNoticeBoard();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(choice == 2) {
+            try {
+                Appointment app = new Appointment();
+                app.getUserAppointmentDetails(getBitsId());
+                }
+                catch(Exception e) {
+                    System.out.println("Could not get appointment details");
+                }
+            }
+        else if(choice == 3) {
+            try {
+                Appointment app = new Appointment();
+                app.bookAppointment(bitsId);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(choice == 4) {
+            System.out.println("Enter the Item Id, Quantity and the Payment Mode(Cash or Later)");
+            int itemId = Integer.parseInt(sc.nextLine());
+            int quantity = Integer.parseInt(sc.nextLine());
+            String mode = sc.nextLine();
+            Transaction t = new Transaction(bitsId, itemId, quantity, mode);
+        }
+        else {
+            System.out.println("Enter correct input");
+        }
+    }
+    User() {
+
     }
 
-    public int getID() { return bitsID; }
+    public String getBitsId() { return bitsId; }
     public String getName() { return name; }
-    public String getEmail() { return email; }
-    public String mobileNum(){ return mobileNum; }
+    public String getEmail() { return emailAddress; }
+    public long mobileNum(){ return mobileNumber; }
 
-    User() {
-        String[] details = usersList.split(",");
-        if (details[1].equals(bitsID) && details[2].equals(password)) {
-            System.out.println("Welcome " + details[3]);
-            while (true) {
-                User user = new User(bitsID, password);
-                System.out.println("-----To get Doctors list                    :  input 1");
-                System.out.println("-----To view your appointments              :  input 2");
-                System.out.println("-----To view Notice Board                   :  input 3");
-                System.out.println("-----To buy medicine                        :  input 4");
-                System.out.println("-----To view your due amount                :  input 5");
-                System.out.println("-----To return to the Main Menu             :  input 6");
-                int inpChoice = 0;
-                while (true) {
-                    boolean bool = false;
-                    try {
-                        Scanner sc = new Scanner(System.in);
-                        inpChoice = Integer.parseInt(sc.nextLine());
-                        if (inpChoice < 1 || inpChoice > 6) {
-                            bool = false;
-                            System.out.println("Please input appropriate value!");
-                        } else {
-                            bool = true;
-                        }
-                        sc.nextLine();
-                    } catch (Exception e) {
-                        System.out.println("Please input integer value!");
-                        Scanner sc = new Scanner(System.in);
-                        sc.nextLine();
-                    }
-                    if (bool) {
-                        break;
-                    }
-                }
-                if (inpChoice == 1) {
-                    System.out.println();
-                    System.out.println("Available Doctors: ");
-                    Doctor doc=new DoctorsList();
-                    doc.doctorsList();
-                    System.out.println();
-                } else if (inpChoice == 2) {
-                    System.out.println();
-                    System.out.println("Your Current Appointments: ");
-                    myAppointments();
-                    System.out.println();
-                } else if (inpChoice == 3) {
-                    System.out.println();
-                    System.out.println("NOTICE BOARD");
-                    NoticeBoard nub = new NoticeBoard();
-                    // Displays the existing notice board
-                    nub.showNoticeBoard();
-                    System.out.println();
-                } else if (inpChoice == 4) {
-                    System.out.println();
-                    System.out.println(": ");
-                    Medicine med=new Medicine();
-                    med.displayList();
-                    //   buyMedicine();
-                } else if (inpChoice == 5) {
-                    String amntDue=;
-                    System.out.println("Your total due amount:"+amntDue);
-                    System.out.println();
+    public void displayUsers() throws Exception {
+        try
+        {
+            FileInputStream fis = new FileInputStream("usersList.txt");
+            Scanner sc = new Scanner(fis);
+            while(sc.hasNextLine())
+            {
+                System.out.println(sc.nextLine());
+            }
+            sc.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-                } else if (inpChoice == 6) {
+    private void getUserdetails(String email) throws Exception{
+        try
+        {
+            FileInputStream fis = new FileInputStream("usersList.txt");
+            Scanner sc = new Scanner(fis);
+            while(sc.hasNextLine())
+            {
+                String[] user = email.split(",");
+                if(user[2].equals(email)) {
+                    this.name = user[0];
+                    this.bitsId = user[1];
+                    this.emailAddress = email;
+                    this.mobileNumber = Long.parseLong(user[3]);
                     break;
                 }
             }
+            sc.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }

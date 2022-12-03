@@ -1,35 +1,35 @@
 import java.util.*;
 
 public class Transaction {
-	private int bits_ID;
-	private int item_ID;
+	private String bitsId;
+	private int itemId;
 	private int quantity;
 	private String paymentMode;
-	private double subTotalPrice;
+	private int total;
 	
-	Transaction(String s){
-		String[] temp = s.split(",");
-		this.bits_ID = Integer.parseInt(temp[0]);
-		this.item_ID = Integer.parseInt(temp[1]);
-		this.quantity = Integer.parseInt(temp[2]);
-		this.paymentMode = temp[3];
+	Transaction(String bitsId, int itemId, int quantity, String mode) {
+		this.bitsId = bitsId;
+		this.itemId = itemId;
+		this.quantity = quantity;
+		this.paymentMode = mode;
+		purchase();
 	}
-	
-	public void getTransactionSummary() {
-		System.out.println("BITS_ID "+bits_ID);
-		System.out.println("ITEM_ID "+item_ID);
-		System.out.println("Quantity "+quantity);
-		System.out.println("Payment_Mode "+paymentMode);
-		System.out.println("Total Price "+subTotalPrice);
-		System.out.println();
+	public String getBitsId() {
+		return bitsId;
 	}
-	
-	
-	public void addRevenue(double revenue) {
-		GlobalVariables.revenue += revenue;
+	public String getPaymentMode() {
+		return paymentMode;
 	}
-	
-	public void addAmountOwned(double amountOwned) {
-		GlobalVariables.amountOwned += amountOwned;
+	public int getItemId() {
+		return itemId;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void purchase() {
+		// take price from Inventory
+		// call revenue from MedicalStoreOwner class
+		// total = ;
 	}
 }

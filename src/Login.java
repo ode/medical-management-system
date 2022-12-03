@@ -31,7 +31,7 @@ public class Login {
                 MedicalStoreOwner owner = new MedicalStoreOwner();
             }
             else {
-                User u = new User();
+                User u = new User(emailAddress);
             }
         }
         else {

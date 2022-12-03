@@ -11,8 +11,13 @@ public class Admin {
         Scanner sc = new Scanner(System.in);
         int choice = Integer.parseInt(sc.nextLine());
         if(choice == 1) {
-            User u = new User();
-            u.displayUsers();
+            try {
+                User u = new User();
+                u.displayUsers();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if(choice == 2) {
             try {
