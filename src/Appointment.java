@@ -93,16 +93,6 @@ public class Appointment {
                 if(updatedAppointment[2].equals(s[2])) {
                     if(dayForCheck.equals(day)) {
 
-                        // 16:26 - dateTimeCheck
-                        // 16:15 - dateTime
-                        System.out.println(dayForCheck);
-                        System.out.println(dateTime);
-                        System.out.println(dateTimeCheck.minusMinutes(10));
-                        System.out.println(dateTimeCheck.plusMinutes(10));
-                        System.out.println(dateTime.isAfter(dateTimeCheck.minusMinutes(10)));
-                        System.out.println(dateTime.isBefore(dateTimeCheck.plusMinutes(10)));
-
-
                         if(dateTime.isAfter(dateTimeCheck.minusMinutes(10))
                                 && dateTime.isBefore(dateTimeCheck.plusMinutes(10))) {
                             check = true;

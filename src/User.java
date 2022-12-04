@@ -56,8 +56,8 @@ public class User extends Interaction implements FileOperator, Runnable {
         }
         else if(choice == 4) {
             System.out.println("Enter the Item Id, Quantity and the Payment Mode(Cash or Later)");
-            int itemId = Integer.parseInt(sc.nextLine());
-            int quantity = Integer.parseInt(sc.nextLine());
+            int itemId = sc.nextInt();
+            int quantity = sc.nextInt();
             String mode = sc.nextLine();
             Transaction t = new Transaction(bitsId, itemId, quantity, mode);
         }
