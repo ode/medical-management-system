@@ -31,10 +31,14 @@ public class Transaction {
 	public void purchase() {
 		try {
 			Inventory inv = new Inventory();
+			inv.updateCount(getItemId(), getQuantity());
+
 			price = inv.getPrice(getItemId());
-			total = (price * quantity);
+			total = (price * getQuantity());
+
 			MedicalStoreOwner owner = new MedicalStoreOwner();
 			owner.updateRevenue(total, getPaymentMode());
+
 			if(getPaymentMode().equals("Cash")) {
 				System.out.println("Purchase done successfully");
 			}
