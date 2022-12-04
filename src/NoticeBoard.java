@@ -55,7 +55,7 @@ public class NoticeBoard {
         }
     }
 
-    public Day parseDay(String s) {
+    static public Day parseDay(String s) {
         switch (s) {
             case "M" : return Day.MONDAY;
             case "T" : return Day.TUESDAY;

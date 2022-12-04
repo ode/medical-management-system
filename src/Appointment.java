@@ -132,7 +132,7 @@ public class Appointment {
             System.exit(1);
             return false;
         }
-        Day day = noticeBoard.parseDay(updatedAppointment[3]);
+        Day day = NoticeBoard.parseDay(updatedAppointment[3]);
         for (Notice notice : noticeBoard.getNotices()) {
             if (id == notice.getDoctor().getID() && day == notice.getDay()) {
                 if (time.compareTo(notice.startTime) >= 0 && time.compareTo(notice.endTime) <= 0) {
@@ -144,24 +144,16 @@ public class Appointment {
     }
 
     public void getTodayAppointments() throws Exception {
-//        try
-//        {
-            String app = null;
-            FileInputStream fis = new FileInputStream("appointmentList.txt");
-            Scanner sc = new Scanner(fis);
-//            while(sc.hasNextLine())
-//            {
-//                String[] s = sc.nextLine().split(",");
-//                if() {
-//                    app = s.toString();
-//                    break;
-//                }
-//            }
-//            sc.close();
-//        }
-//        catch(IOException e)
-//        {
-//            e.printStackTrace();
-//        }
+        FileInputStream fis = new FileInputStream("appointmentList.txt");
+        Scanner sc = new Scanner(fis);
+
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            Day day = NoticeBoard.parseDay(line.split(",")[3]);
+            if (day.ordinal() == LocalDate.now().getDayOfWeek().getValue()) {
+                System.out.println(line);
+            }
+        }
+
     }
 }
