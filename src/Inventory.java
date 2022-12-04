@@ -3,9 +3,12 @@ import java.io.*;
 
 public class Inventory {
     private Map<Medicine, Integer> inventory;
+    private Map<Integer, Medicine> idMap;
 
     Inventory() throws FileNotFoundException{
         inventory = new HashMap<Medicine, Integer>();
+        idMap = new HashMap<Integer, Medicine>();
+
         Scanner sc;
         try { sc = new Scanner(new File("inventory.txt")); }
         catch (Exception e) {return;}
@@ -17,6 +20,7 @@ public class Inventory {
             int quantity = Integer.parseInt(s[3]);
             Medicine medicine = new Medicine(name, id, price);
             inventory.put(medicine, quantity);
+            idMap.put(id, medicine);
         }
     }
 
@@ -27,6 +31,11 @@ public class Inventory {
         while (sc.hasNextLine()) {
             System.out.println(sc.nextLine());
         }
+    }
+    
+    public int getPrice(int id) {
+        Medicine medicine = idMap.get(id);
+        return medicine.getPrice();
     }
 
     public void save() {
