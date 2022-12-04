@@ -28,8 +28,7 @@ public class User {
             int choice = Integer.parseInt(sc.nextLine());
             if(choice == 1) {
                 try {
-                    NoticeBoard nub = new NoticeBoard();
-                    nub.showNoticeBoard();
+                    NoticeBoard.showNoticeBoard();
                 }
                 catch(IOException e) {
                     System.out.println("noticeboard file not found");

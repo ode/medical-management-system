@@ -21,9 +21,10 @@ class Notice {
 }
 
 public class NoticeBoard {
+    private static NoticeBoard obj = null;
     private ArrayList<Notice> noticeBoard;
 
-    NoticeBoard() throws FileNotFoundException {
+    private NoticeBoard() throws FileNotFoundException {
         noticeBoard = new ArrayList<Notice>();
         File file = new File("noticeboard.txt");
         Scanner sc = new Scanner(file);
@@ -49,7 +50,7 @@ public class NoticeBoard {
         return new ArrayList<Notice>(noticeBoard); // copy for safety
     }
 
-    public void showNoticeBoard() throws FileNotFoundException {
+    public static void showNoticeBoard() throws FileNotFoundException {
         Scanner file = new Scanner(new File("noticeboard.txt"));
         while (file.hasNextLine()) {
             System.out.println(file.nextLine());
@@ -89,5 +90,11 @@ public class NoticeBoard {
         newf.close();
 
         Files.move(Paths.get("newticeboard.txt"), Paths.get("noticeboard.txt"), StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public static NoticeBoard getInstance() throws FileNotFoundException {
+        if (obj == null) 
+            obj = new NoticeBoard();
+        return obj;
     }
 }

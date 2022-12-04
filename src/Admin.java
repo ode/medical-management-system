@@ -24,8 +24,7 @@ public class Admin {
             }
             else if(choice == 2) {
                 try {
-                    NoticeBoard nub = new NoticeBoard();
-                    nub.updateNoticeBoard();
+                    NoticeBoard.getInstance().updateNoticeBoard();
                 }
                 catch(Exception e) {
                     System.out.println("Error update notice board, please check your parameters and try again");

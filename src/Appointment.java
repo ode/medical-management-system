@@ -133,7 +133,7 @@ public class Appointment {
         LocalTime time = LocalTime.parse(updatedAppointment[4]);
         NoticeBoard noticeBoard;
         try {
-            noticeBoard = new NoticeBoard();
+            noticeBoard = NoticeBoard.getInstance();
         }
         catch (Exception e) {
             System.out.println("File not found: noticeboard.txt");
