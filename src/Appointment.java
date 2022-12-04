@@ -9,7 +9,7 @@ public class Appointment {
 
     }
 
-    public String getUserAppointmentDetails(String bitsId) throws IOException {
+    public String getUserAppointmentDetails(String bitsId) {
         try
         {
             String app = null;
@@ -17,7 +17,6 @@ public class Appointment {
             Scanner sc = new Scanner(fis);
             while(sc.hasNextLine())
             {
-
                 String[] s = sc.nextLine().split(",");
                 if(s[1].equals(bitsId)) {
                     app = Arrays.toString(s);
@@ -27,8 +26,7 @@ public class Appointment {
             sc.close();
             return app;
         }
-        catch(IOException e)
-        {
+        catch(IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -37,7 +35,6 @@ public class Appointment {
     public void bookAppointment(String bitsId) throws IOException{
         System.out.println("With whom you want to book an appointment with? Please enter the Doctor_id.");
 
-        // Timestamp: https://www.javatpoint.com/java-timestamp
         long currentTimestamp = System.currentTimeMillis();
         String appointment = String.valueOf(currentTimestamp);
         appointment = appointment + "," + bitsId;

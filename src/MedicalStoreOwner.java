@@ -1,9 +1,41 @@
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MedicalStoreOwner {
     private int revenue;
     private int dueAmount;
     MedicalStoreOwner() {
+        try
+        {
+            FileInputStream fis = new FileInputStream("revenue.txt");
+            Scanner sc = new Scanner(fis);
+            while(sc.hasNextLine())
+            {
+                String[] s = sc.nextLine().split(",");
+                if(s[0].equals("Revenue")) {
+                    this.revenue = Integer.parseInt(s[1]);
+                }
+                else {
+                    this.dueAmount = Integer.parseInt(s[1]);
+                }
+            }
+            sc.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public int getRevenue() {
+        return revenue;
+    }
+    public int getDueAmount() {
+        return dueAmount;
+    }
+    public void displayOptions() {
         System.out.println("Hi Medical Store Owner! Please select from the given options");
         System.out.println("1 - Display the total revenue");
         System.out.println("2 - Display the due amount(received at end of semester)");
@@ -30,17 +62,26 @@ public class MedicalStoreOwner {
             System.out.println("Wrong input");
         }
     }
-
-    public int getRevenue() {
-        return revenue;
-    }
-    public int getDueAmount() {
-        return dueAmount;
-    }
     public void updateRevenue(int purchase, String mode) {
         revenue = revenue + purchase;
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("revenue.txt", true));
+            out.write("Revenue," + getRevenue() + "\n");
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("Revenue could not be updated" + e);
+        }
         if(mode.equals("Later")) {
             dueAmount = dueAmount + purchase;
+            try {
+                BufferedWriter out = new BufferedWriter(new FileWriter("revenue.txt", true));
+                out.write("DueAmount," + getDueAmount() + "\n");
+                out.close();
+            }
+            catch (IOException e) {
+                System.out.println("Due Amount could not be updated" + e);
+            }
         }
     }
     private void showTotalRevenue() {

@@ -72,7 +72,7 @@ public class User {
     public String getEmail() { return emailAddress; }
     public long mobileNum(){ return mobileNumber; }
 
-    public void displayUsers() throws IOException {
+    public void displayUsers() {
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");
@@ -90,7 +90,7 @@ public class User {
         }
     }
 
-    private void getUserdetails(String email){
+    private void getUserdetails(String email) {
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");

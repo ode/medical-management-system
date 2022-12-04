@@ -36,7 +36,6 @@ public class Transaction {
 
 			MedicalStoreOwner owner = new MedicalStoreOwner();
 			owner.updateRevenue(total, getPaymentMode());
-
 			if(getPaymentMode().equals("Cash")) {
 				System.out.println("Purchase done successfully");
 			}
