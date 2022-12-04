@@ -12,15 +12,14 @@ public class Appointment {
     public String getUserAppointmentDetails(String bitsId) {
         try
         {
-            String app = null;
+            String app = "";
             FileInputStream fis = new FileInputStream("appointmentList.txt");
             Scanner sc = new Scanner(fis);
             while(sc.hasNextLine())
             {
                 String[] s = sc.nextLine().split(",");
                 if(s[1].equals(bitsId)) {
-                    app = Arrays.toString(s);
-                    break;
+                    app += Arrays.toString(s) + "\n";
                 }
             }
             sc.close();
