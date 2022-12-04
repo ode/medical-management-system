@@ -28,7 +28,7 @@ public class Transaction {
 
 	public void purchase() {
 		try {
-			Inventory inv = new Inventory();
+			Inventory inv = Inventory.getInstance();
 			inv.updateCount(getItemId(), getQuantity());
 
 			price = inv.getPrice(getItemId());

@@ -4,8 +4,9 @@ import java.io.*;
 public class Inventory {
     private Map<Medicine, Integer> inventory;
     private Map<Integer, Medicine> idMap;
+    private static Inventory obj = null;
 
-    Inventory() throws FileNotFoundException{
+    private Inventory() throws FileNotFoundException{
         inventory = new HashMap<Medicine, Integer>();
         idMap = new HashMap<Integer, Medicine>();
 
@@ -32,7 +33,7 @@ public class Inventory {
         save(); 
     }
 
-    public void showInventory() throws FileNotFoundException{
+    public static void showInventory() throws FileNotFoundException{
         Scanner sc = new Scanner(new File("inventory.txt"));
         while (sc.hasNextLine()) {
             System.out.println(sc.nextLine());
@@ -55,6 +56,12 @@ public class Inventory {
         } catch (Exception e) {
             System.out.println("error saving:" + e);
         }
+    }
+
+    public static Inventory getInstance() throws FileNotFoundException {
+        if (obj == null)
+            obj = new Inventory();
+        return obj;
     }
 
 }

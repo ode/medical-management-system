@@ -54,8 +54,7 @@ public class MedicalStoreOwner {
             }
             else if(choice == 3) {
                 try {
-                    Inventory inv = new Inventory();
-                    inv.showInventory();
+                    Inventory.showInventory();
                 }
                 catch(Exception e) {
                     e.printStackTrace();
