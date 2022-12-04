@@ -58,13 +58,8 @@ public class Register {
 
     private boolean checkEmail(String emailAddress) {
         try {
-            String email[] = emailAddress.split("@");
-            if(email[1] == "pilani.bits-pilani.ac.in") {
-                return true;
-            }
-            else {
-                return false;
-            }
+            String[] email = emailAddress.split("@");
+            return email[1].equals("pilani.bits-pilani.ac.in");
         }
         catch(Exception e) {
             return false;

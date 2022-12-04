@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World! Welcome to Medc Management System");
+    public static void main(String[] args) {
+        System.out.println("Hello, World! Welcome to MedC Management System");
         System.out.println("1 - Login");
         System.out.println("2 - Register");
 

@@ -13,13 +13,4 @@ public class Medicine {
     public int getId() { return id; }
     public int getPrice() { return unitPrice; }
 
-    public void updateCount(int count) {
-        try {
-            Inventory inv = new Inventory();
-            inv.updateCount(this, count);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

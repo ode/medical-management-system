@@ -1,5 +1,3 @@
-import java.time.*;
-
 public class Doctor {
     private int doctorID;
     private String consultationType;

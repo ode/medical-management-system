@@ -52,7 +52,7 @@ public class Login {
     }
     private boolean checkEmail(String emailAddress) {
         try {
-            String email[] = emailAddress.split("@");
+            String[] email = emailAddress.split("@");
             return email[1].equals("pilani.bits-pilani.ac.in");
         }
         catch(Exception e) {

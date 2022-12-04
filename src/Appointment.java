@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +10,7 @@ public class Appointment {
 
     }
 
-    public String getUserAppointmentDetails(String bitsId) throws Exception{
+    public String getUserAppointmentDetails(String bitsId) throws IOException {
         try
         {
             String app = null;
@@ -20,7 +21,7 @@ public class Appointment {
 
                 String[] s = sc.nextLine().split(",");
                 if(s[1].equals(bitsId)) {
-                    app = s.toString();
+                    app = Arrays.toString(s);
                     break;
                 }
             }
@@ -34,7 +35,7 @@ public class Appointment {
         }
     }
 
-    public void bookAppointment(String bitsId) throws Exception{
+    public void bookAppointment(String bitsId) throws IOException{
         System.out.println("With whom you want to book an appointment with? Please enter the Doctor_id.");
 
         // Timestamp: https://www.javatpoint.com/java-timestamp

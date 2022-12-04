@@ -56,14 +56,14 @@ public class NoticeBoard {
     }
 
     static public Day parseDay(String s) {
-        switch (s) {
-            case "M" : return Day.MONDAY;
-            case "T" : return Day.TUESDAY;
-            case "W" : return Day.WEDNESDAY;
-            case "Th": return Day.THURSDAY;
-            case "F" : return Day.FRIDAY;
-            case "S" : return Day.SATURDAY;
-            default  : return Day.SUNDAY;
-        }
+        return switch (s) {
+            case "M" -> Day.MONDAY;
+            case "T" -> Day.TUESDAY;
+            case "W" -> Day.WEDNESDAY;
+            case "Th" -> Day.THURSDAY;
+            case "F" -> Day.FRIDAY;
+            case "S" -> Day.SATURDAY;
+            default -> Day.SUNDAY;
+        };
     }
 }
