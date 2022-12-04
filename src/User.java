@@ -84,7 +84,7 @@ public class User {
             while(sc.hasNextLine()) {
                 String s = sc.nextLine();
                 if (! (s.contains("admin") || s.contains("medical")))
-                    System.out.println(sc.nextLine());
+                    System.out.println(s);
             }
             sc.close();
         }

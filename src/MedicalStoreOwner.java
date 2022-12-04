@@ -36,31 +36,37 @@ public class MedicalStoreOwner {
         return dueAmount;
     }
     public void displayOptions() {
-        System.out.println("Hi Medical Store Owner! Please select from the given options");
-        System.out.println("1 - Display the total revenue");
-        System.out.println("2 - Display the due amount(received at end of semester)");
-        System.out.println("3 - Display the inventory");
-
         Scanner sc = new Scanner(System.in);
-        int choice = Integer.parseInt(sc.nextLine());
-        if(choice == 1) {
-            showTotalRevenue();
-        }
-        else if(choice == 2) {
-            showDueAmount();
-        }
-        else if(choice == 3) {
-            try {
-                Inventory inv = new Inventory();
-                inv.showInventory();
+        boolean done = false;
+        while (!done) {
+            System.out.println("Hi Medical Store Owner! Please select from the given options");
+            System.out.println("1 - Display the total revenue");
+            System.out.println("2 - Display the due amount(received at end of semester)");
+            System.out.println("3 - Display the inventory");
+            System.out.println("4 - Exit");
+
+            int choice = Integer.parseInt(sc.nextLine());
+            if(choice == 1) {
+                showTotalRevenue();
             }
-            catch(Exception e) {
-                e.printStackTrace();
+            else if(choice == 2) {
+                showDueAmount();
+            }
+            else if(choice == 3) {
+                try {
+                    Inventory inv = new Inventory();
+                    inv.showInventory();
+                }
+                catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (choice == 4) done = true;
+            else {
+                System.out.println("Wrong input");
             }
         }
-        else {
-            System.out.println("Wrong input");
-        }
+        sc.close();
     }
     public void updateRevenue(int purchase, String mode) {
         revenue = revenue + purchase;

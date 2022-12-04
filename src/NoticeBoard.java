@@ -73,7 +73,7 @@ public class NoticeBoard {
         File newFile = new File("newticeboard.txt");
         newFile.createNewFile();
 
-        FileWriter newf = new FileWriter("newticeboard.txt");
+        BufferedWriter newf = new BufferedWriter(new FileWriter("newticeboard.txt"));
         Scanner old = new Scanner(new File("noticeboard.txt"));
         while (old.hasNextLine()) {
             String s = old.nextLine();
@@ -86,6 +86,7 @@ public class NoticeBoard {
                 newf.write(s + '\n');
             }
         }
+        newf.close();
 
         Files.move(Paths.get("newticeboard.txt"), Paths.get("noticeboard.txt"), StandardCopyOption.REPLACE_EXISTING);
     }
