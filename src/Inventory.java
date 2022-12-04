@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Inventory {
+public class Inventory implements FileOperator {
     private Map<Medicine, Integer> inventory;
     private Map<Integer, Medicine> idMap;
     private static Inventory obj = null;
@@ -33,7 +33,7 @@ public class Inventory {
         save(); 
     }
 
-    public static void showInventory() throws FileNotFoundException{
+    public void display() throws FileNotFoundException{
         Scanner sc = new Scanner(new File("inventory.txt"));
         while (sc.hasNextLine()) {
             System.out.println(sc.nextLine());

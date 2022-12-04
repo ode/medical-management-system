@@ -2,7 +2,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class User {
+public class User implements FileOperator {
     private String bitsId;
     private String emailAddress;
     private long mobileNumber;
@@ -28,7 +28,8 @@ public class User {
             int choice = Integer.parseInt(sc.nextLine());
             if(choice == 1) {
                 try {
-                    NoticeBoard.showNoticeBoard();
+                    NoticeBoard n = NoticeBoard.getInstance();
+                    n.display();
                 }
                 catch(IOException e) {
                     System.out.println("noticeboard file not found");
@@ -75,7 +76,7 @@ public class User {
     public String getEmail() { return emailAddress; }
     public long mobileNum(){ return mobileNumber; }
 
-    public void displayUsers() {
+    public void display() {
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");

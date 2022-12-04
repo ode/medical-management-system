@@ -43,7 +43,7 @@ public class MedicalStoreOwner extends Interaction{
     public int getDueAmount() {
         return dueAmount;
     }
-    
+
     void options(int choice) {
         if(choice == 1) {
             showTotalRevenue();
@@ -53,7 +53,8 @@ public class MedicalStoreOwner extends Interaction{
         }
         else if(choice == 3) {
             try {
-                Inventory.showInventory();
+                Inventory inv = Inventory.getInstance();
+                inv.display();
             }
             catch(Exception e) {
                 e.printStackTrace();

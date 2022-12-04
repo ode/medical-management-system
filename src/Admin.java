@@ -16,7 +16,7 @@ public class Admin {
             if(choice == 1) {
                 try {
                     User u = new User();
-                    u.displayUsers();
+                    u.display();
                 }
                 catch (Exception e) {
                     e.printStackTrace();

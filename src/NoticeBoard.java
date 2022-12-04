@@ -20,7 +20,7 @@ class Notice {
     public Doctor getDoctor() {return doctor;}
 }
 
-public class NoticeBoard {
+public class NoticeBoard implements FileOperator{
     private static NoticeBoard obj = null;
     private ArrayList<Notice> noticeBoard;
 
@@ -50,7 +50,7 @@ public class NoticeBoard {
         return new ArrayList<Notice>(noticeBoard); // copy for safety
     }
 
-    public static void showNoticeBoard() throws FileNotFoundException {
+    public void display() throws FileNotFoundException {
         Scanner file = new Scanner(new File("noticeboard.txt"));
         while (file.hasNextLine()) {
             System.out.println(file.nextLine());
