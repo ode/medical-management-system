@@ -25,14 +25,20 @@ public class Inventory {
     }
 
     public int getStock(Medicine m) { return inventory.get(m); }
-    public void updateCount(Medicine m, int count) { inventory.put(m, count); save(); }
+    public void updateCount(int medicineId, int count) { 
+        Medicine medicine = idMap.get(medicineId);
+        int currCount = inventory.get(medicine);
+        inventory.put(medicine, currCount - count);
+        save(); 
+    }
+
     public void showInventory() throws FileNotFoundException{
         Scanner sc = new Scanner(new File("inventory.txt"));
         while (sc.hasNextLine()) {
             System.out.println(sc.nextLine());
         }
     }
-    
+
     public int getPrice(int id) {
         Medicine medicine = idMap.get(id);
         return medicine.getPrice();
