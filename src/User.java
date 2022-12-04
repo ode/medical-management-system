@@ -36,7 +36,8 @@ public class User {
         else if(choice == 2) {
             try {
                 Appointment app = new Appointment();
-                app.getUserAppointmentDetails(getBitsId());
+                String s = app.getUserAppointmentDetails(getBitsId());
+                System.out.println(s);
                 }
                 catch(Exception e) {
                     System.out.println("Could not get appointment details");
