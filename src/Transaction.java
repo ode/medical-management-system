@@ -5,6 +5,7 @@ public class Transaction {
 	private int itemId;
 	private int quantity;
 	private String paymentMode;
+	private int price;
 	private int total;
 	
 	Transaction(String bitsId, int itemId, int quantity, String mode) {
@@ -28,8 +29,21 @@ public class Transaction {
 	}
 
 	public void purchase() {
-		// take price from Inventory
-		// call revenue from MedicalStoreOwner class - updateRevenue(amount, mode)
-		// total = ;
+		try {
+			Inventory inv = new Inventory();
+			price = inv.getPrice(getItemId());
+			total = (price * quantity);
+			MedicalStoreOwner owner = new MedicalStoreOwner();
+			owner.updateRevenue(total, getPaymentMode());
+			if(getPaymentMode().equals("Cash")) {
+				System.out.println("Purchase done successfully");
+			}
+			else {
+				System.out.println("Purchase done successfully and the amount is added to your fees");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
