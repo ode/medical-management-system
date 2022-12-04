@@ -78,7 +78,7 @@ public class NoticeBoard {
         while (old.hasNextLine()) {
             String s = old.nextLine();
             if (s.startsWith(id)) {
-                String[] ok = s.split(",")
+                String[] ok = s.split(",");
                 ok[3] = days;
                 ok[4] = start + ";" + end;
                 newf.write(String.join(",", ok) + '\n');

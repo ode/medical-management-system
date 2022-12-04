@@ -45,14 +45,13 @@ public class Inventory {
     }
 
     public void save() {
-        FileWriter fw;
         try {
-            fw = new FileWriter("inventory.txt");
-
+            BufferedWriter fw = new BufferedWriter(new FileWriter("inventory.txt"));
             for (Map.Entry<Medicine, Integer> entry : inventory.entrySet()) {
                 Medicine medicine = entry.getKey();
                 fw.write(medicine.getId() + "," + medicine.getName() + "," + medicine.getPrice() + "," + entry.getValue() + "\n");
             }
+            fw.close();
         } catch (Exception e) {
             System.out.println("error saving:" + e);
         }

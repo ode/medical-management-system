@@ -5,15 +5,10 @@ import java.util.Scanner;
 public class Login {
     private String emailAddress;
     Login() {
-        try {
-            loginDetails();
-        }
-        catch(Exception e) {
-            System.out.println("Could not login with the given details");
-        }
+        loginDetails();
     }
 
-    private void loginDetails() throws Exception {
+    private void loginDetails() {
         System.out.println("Enter login details");
         Scanner sc = new Scanner(System.in);
         emailAddress = sc.nextLine();
@@ -60,7 +55,7 @@ public class Login {
             return false;
         }
     }
-    private boolean checkUser(String emailAddress) throws IOException{
+    private boolean checkUser(String emailAddress) {
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");
@@ -82,7 +77,7 @@ public class Login {
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            e.printStackTrace(); 
             return false;
         }
     }
