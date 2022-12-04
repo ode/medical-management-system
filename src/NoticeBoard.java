@@ -5,8 +5,8 @@ import java.io.*;
 class Notice {
     private Doctor doctor;
     private Day day;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    public LocalTime startTime; // public access is fine because immutable objects
+    public LocalTime endTime;
 
     Notice(Doctor d, Day da, LocalTime start, LocalTime end) {
         doctor = d;
@@ -15,7 +15,8 @@ class Notice {
         endTime = end;
     }
 
-    
+    public Day getDay() {return day;}
+    public Doctor getDoctor() {return doctor;}
 }
 
 public class NoticeBoard {
@@ -43,7 +44,7 @@ public class NoticeBoard {
         }
     }
 
-    public ArrayList<Notice> getNoticeBoard() {
+    public ArrayList<Notice> getNotices() {
         return new ArrayList<Notice>(noticeBoard); // copy for safety
     }
 
@@ -54,7 +55,7 @@ public class NoticeBoard {
         }
     }
 
-    Day parseDay(String s) {
+    public Day parseDay(String s) {
         switch (s) {
             case "M" : return Day.MONDAY;
             case "T" : return Day.TUESDAY;

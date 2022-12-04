@@ -121,12 +121,28 @@ public class Appointment {
 
     private boolean isDoctorAvailable (String appointment) {
         String[] updatedAppointment = appointment.split(",");
-        String doctorId = updatedAppointment[2];
-        // call Notice Board for doctor data
-//        if() {
-//
-//        }
+        int id = Integer.parseInt(updatedAppointment[2]);
+        LocalTime time = LocalTime.parse(updatedAppointment[4]);
+        NoticeBoard noticeBoard;
+        try {
+            noticeBoard = new NoticeBoard();
+        }
+        catch (Exception e) {
+            System.out.println("File not found: noticeboard.txt");
+            System.exit(1);
+            return false;
+        }
+        Day day = noticeBoard.parseDay(updatedAppointment[3]);
+        for (Notice notice : noticeBoard.getNotices()) {
+            if (id == notice.getDoctor().getID() && day == notice.getDay()) {
+                if (time.compareTo(notice.startTime) >= 0 && time.compareTo(notice.endTime) <= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+
     public void getTodayAppointments() throws Exception {
 //        try
 //        {
