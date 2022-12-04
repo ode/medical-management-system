@@ -29,7 +29,8 @@ public class Login {
             }
             else {
                 User u = new User(emailAddress);
-                u.loop();
+                Thread userObject = new Thread(u);
+                userObject.start();
             }
         }
         else {

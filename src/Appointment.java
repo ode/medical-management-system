@@ -32,7 +32,7 @@ public class Appointment {
         }
     }
 
-    public void bookAppointment(String bitsId) throws IOException{
+    public synchronized void bookAppointment(String bitsId) throws IOException{
         System.out.println("With whom you want to book an appointment with? Please enter the Doctor_id.");
 
         long currentTimestamp = System.currentTimeMillis();

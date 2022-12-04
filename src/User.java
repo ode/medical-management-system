@@ -2,7 +2,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class User extends Interaction implements FileOperator {
+public class User extends Interaction implements FileOperator, Runnable {
     private String bitsId;
     private String emailAddress;
     private long mobileNumber;
@@ -68,6 +68,14 @@ public class User extends Interaction implements FileOperator {
 
     User() {
 
+    }
+
+    public void run() {
+        try {
+            this.loop();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getBitsId() { return bitsId; }
