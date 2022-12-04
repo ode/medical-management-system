@@ -44,7 +44,7 @@ public class MedicalStoreOwner extends Interaction{
         return dueAmount;
     }
 
-    void options(int choice) {
+    void options(int choice, Scanner sc) {
         if(choice == 1) {
             showTotalRevenue();
         }

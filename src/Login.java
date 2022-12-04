@@ -21,6 +21,7 @@ public class Login {
             System.out.println("Successfully logged in");
             if(email[0].equals("admin")) {
                 Admin a = new Admin();
+                a.loop();
             }
             else if(email[0].equals("medicalStoreOwner")) {
                 MedicalStoreOwner owner = new MedicalStoreOwner();
@@ -28,6 +29,7 @@ public class Login {
             }
             else {
                 User u = new User(emailAddress);
+                u.loop();
             }
         }
         else {

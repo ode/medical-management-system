@@ -2,11 +2,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class User implements FileOperator {
+public class User extends Interaction implements FileOperator {
     private String bitsId;
     private String emailAddress;
     private long mobileNumber;
     private String name;
+
+    void printInstructions() {
+        System.out.println("Hi User! Please select from the given options");
+            System.out.println("1 - Display Notice Board");
+            System.out.println("2 - View Appointments");
+            System.out.println("3 - Book Appointment");
+            System.out.println("4 - Purchase Medicine");
+    }
     User(String email) {
         emailAddress = email;
         try {
@@ -15,58 +23,49 @@ public class User implements FileOperator {
         catch(Exception e) {
             System.out.println("Could not display user functions");
         }
+    }
 
-        Scanner sc = new Scanner(System.in);
-        boolean done = false;
-        while (!done) {
-            System.out.println("Hi User! Please select from the given options");
-            System.out.println("1 - Display Notice Board");
-            System.out.println("2 - View Appointments");
-            System.out.println("3 - Book Appointment");
-            System.out.println("4 - Purchase Medicine");
-            System.out.println("5 - Exit");
-            int choice = Integer.parseInt(sc.nextLine());
-            if(choice == 1) {
-                try {
-                    NoticeBoard n = NoticeBoard.getInstance();
-                    n.display();
-                }
-                catch(IOException e) {
-                    System.out.println("noticeboard file not found");
-                }
+    void options(int choice, Scanner sc) {
+        if(choice == 1) {
+            try {
+                NoticeBoard n = NoticeBoard.getInstance();
+                n.display();
             }
-            else if(choice == 2) {
-                try {
-                    Appointment app = new Appointment();
-                    String s = app.getUserAppointmentDetails(getBitsId());
-                    System.out.println(s);
-                    }
-                    catch(Exception e) {
-                        System.out.println("Could not get appointment details");
-                    }
-                }
-            else if(choice == 3) {
-                try {
-                    Appointment app = new Appointment();
-                    app.bookAppointment(bitsId);
-                }
-                catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            else if(choice == 4) {
-                System.out.println("Enter the Item Id, Quantity and the Payment Mode(Cash or Later)");
-                int itemId = Integer.parseInt(sc.nextLine());
-                int quantity = Integer.parseInt(sc.nextLine());
-                String mode = sc.nextLine();
-                Transaction t = new Transaction(bitsId, itemId, quantity, mode);
-            }
-            else if (choice == 5) done = true;
-            else {
-                System.out.println("Enter correct input");
+            catch(IOException e) {
+                System.out.println("noticeboard file not found");
             }
         }
+        else if(choice == 2) {
+            try {
+                Appointment app = new Appointment();
+                String s = app.getUserAppointmentDetails(getBitsId());
+                System.out.println(s);
+                }
+                catch(Exception e) {
+                    System.out.println("Could not get appointment details");
+                }
+            }
+        else if(choice == 3) {
+            try {
+                Appointment app = new Appointment();
+                app.bookAppointment(bitsId);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(choice == 4) {
+            System.out.println("Enter the Item Id, Quantity and the Payment Mode(Cash or Later)");
+            int itemId = Integer.parseInt(sc.nextLine());
+            int quantity = Integer.parseInt(sc.nextLine());
+            String mode = sc.nextLine();
+            Transaction t = new Transaction(bitsId, itemId, quantity, mode);
+        }
+        else {
+            System.out.println("Enter correct input");
+        }
     }
+
     User() {
 
     }
