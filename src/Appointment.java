@@ -143,7 +143,7 @@ public class Appointment {
             System.exit(1);
             return false;
         }
-        Day day = NoticeBoard.parseDay(updatedAppointment[3]);
+        Day day = Day.parseDay(updatedAppointment[3]);
         for (Notice notice : noticeBoard.getNotices()) {
             if (id == notice.getDoctor().getID() && day == notice.getDay()) {
                 if (time.compareTo(notice.startTime) >= 0 && time.compareTo(notice.endTime) <= 0) {
@@ -160,7 +160,7 @@ public class Appointment {
 
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            Day day = NoticeBoard.parseDay(line.split(",")[3]);
+            Day day = Day.parseDay(line.split(",")[3]);
             if (day.ordinal() == LocalDate.now().getDayOfWeek().getValue()) {
                 System.out.println(line);
             }

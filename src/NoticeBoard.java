@@ -39,7 +39,7 @@ public class NoticeBoard {
                 String[] times = s[4].split(";");
                 LocalTime start = LocalTime.parse(times[0]);
                 LocalTime end = LocalTime.parse(times[1]);
-                Notice notice = new Notice(doc, parseDay(day), start, end);
+                Notice notice = new Notice(doc, Day.parseDay(day), start, end);
                 noticeBoard.add(notice);
             }
         }
@@ -88,17 +88,5 @@ public class NoticeBoard {
         }
 
         Files.move(Paths.get("newticeboard.txt"), Paths.get("noticeboard.txt"), StandardCopyOption.REPLACE_EXISTING);
-    }
-
-    static public Day parseDay(String s) {
-        return switch (s) {
-            case "M" -> Day.MONDAY;
-            case "T" -> Day.TUESDAY;
-            case "W" -> Day.WEDNESDAY;
-            case "Th" -> Day.THURSDAY;
-            case "F" -> Day.FRIDAY;
-            case "S" -> Day.SATURDAY;
-            default -> Day.SUNDAY;
-        };
     }
 }
