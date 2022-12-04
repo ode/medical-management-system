@@ -4,9 +4,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MedicalStoreOwner {
+public class MedicalStoreOwner extends Interaction{
     private int revenue;
     private int dueAmount;
+    
+    void printInstructions() {
+        System.out.println("Hi Medical Store Owner! Please select from the given options\n"+
+        "1 - Display the total revenue\n"+
+        "2 - Display the due amount(received at end of semester)\n"+
+        "3 - Display the inventory\n");
+    }
+    
     MedicalStoreOwner() {
         try
         {
@@ -35,38 +43,27 @@ public class MedicalStoreOwner {
     public int getDueAmount() {
         return dueAmount;
     }
-    public void displayOptions() {
-        Scanner sc = new Scanner(System.in);
-        boolean done = false;
-        while (!done) {
-            System.out.println("Hi Medical Store Owner! Please select from the given options");
-            System.out.println("1 - Display the total revenue");
-            System.out.println("2 - Display the due amount(received at end of semester)");
-            System.out.println("3 - Display the inventory");
-            System.out.println("4 - Exit");
-
-            int choice = Integer.parseInt(sc.nextLine());
-            if(choice == 1) {
-                showTotalRevenue();
+    
+    void options(int choice) {
+        if(choice == 1) {
+            showTotalRevenue();
+        }
+        else if(choice == 2) {
+            showDueAmount();
+        }
+        else if(choice == 3) {
+            try {
+                Inventory.showInventory();
             }
-            else if(choice == 2) {
-                showDueAmount();
-            }
-            else if(choice == 3) {
-                try {
-                    Inventory.showInventory();
-                }
-                catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            else if (choice == 4) done = true;
-            else {
-                System.out.println("Wrong input");
+            catch(Exception e) {
+                e.printStackTrace();
             }
         }
-        sc.close();
+        else {
+            System.out.println("Wrong input");
+        }
     }
+
     public void updateRevenue(int purchase, String mode) {
         revenue = revenue + purchase;
         try {

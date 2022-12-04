@@ -24,7 +24,7 @@ public class Login {
             }
             else if(email[0].equals("medicalStoreOwner")) {
                 MedicalStoreOwner owner = new MedicalStoreOwner();
-                owner.displayOptions();
+                owner.loop();
             }
             else {
                 User u = new User(emailAddress);
