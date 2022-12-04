@@ -89,14 +89,14 @@ public class User {
         }
     }
 
-    private void getUserdetails(String email) throws IOException{
+    private void getUserdetails(String email){
         try
         {
             FileInputStream fis = new FileInputStream("usersList.txt");
             Scanner sc = new Scanner(fis);
             while(sc.hasNextLine())
             {
-                String[] user = email.split(",");
+                String[] user = sc.nextLine().split(",");
                 if(user[2].equals(email)) {
                     this.name = user[0];
                     this.bitsId = user[1];
@@ -107,7 +107,7 @@ public class User {
             }
             sc.close();
         }
-        catch(IOException e)
+        catch(Exception e)
         {
             e.printStackTrace();
         }

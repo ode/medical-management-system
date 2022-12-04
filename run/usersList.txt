@@ -1,3 +1,6 @@
 harshith,20210504,f20210504@pilani.bits-pilani.ac.in,8309084547
+Admin,2020001,admin@pilani.bits-pilani.ac.in,0000000000
+Medical Store Owner,2020002,medicalStoreOwner@pilani.bits-pilani.ac.in,0000000000
 Anish,20200129,f20200129@pilani.bits-pilani.ac.in,9090909090
+Gautam,20201638,f20201638@pilani.bits-pilani.ac.in,9999999999
 Demo Long Name,20210001,f20210001@pilani.bits-pilani.ac.in,9898989898

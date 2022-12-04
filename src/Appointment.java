@@ -39,8 +39,8 @@ public class Appointment {
         System.out.println("With whom you want to book an appointment with? Please enter the Doctor_id.");
 
         // Timestamp: https://www.javatpoint.com/java-timestamp
-        Timestamp instant = Timestamp.from(Instant.now());
-        String appointment = instant.toString();
+        long currentTimestamp = System.currentTimeMillis();
+        String appointment = String.valueOf(currentTimestamp);
         appointment = appointment + "," + bitsId;
 
         Scanner sc = new Scanner(System.in);
@@ -92,10 +92,21 @@ public class Appointment {
                 String dayForCheck = s[3];
 
                 DateTimeFormatter formatterForFile = DateTimeFormatter.ofPattern("HH:mm");
-                LocalTime dateTimeCheck = LocalTime.parse(updatedAppointment[4], formatterForFile);
+                LocalTime dateTimeCheck = LocalTime.parse(s[4], formatterForFile);
 
-                if(updatedAppointment[1].equals(s[1])) {
+                if(updatedAppointment[2].equals(s[2])) {
                     if(dayForCheck.equals(day)) {
+
+                        // 16:26 - dateTimeCheck
+                        // 16:15 - dateTime
+                        System.out.println(dayForCheck);
+                        System.out.println(dateTime);
+                        System.out.println(dateTimeCheck.minusMinutes(10));
+                        System.out.println(dateTimeCheck.plusMinutes(10));
+                        System.out.println(dateTime.isAfter(dateTimeCheck.minusMinutes(10)));
+                        System.out.println(dateTime.isBefore(dateTimeCheck.plusMinutes(10)));
+
+
                         if(dateTime.isAfter(dateTimeCheck.minusMinutes(10))
                                 && dateTime.isBefore(dateTimeCheck.plusMinutes(10))) {
                             check = true;
@@ -111,7 +122,7 @@ public class Appointment {
                 }
             }
             sc.close();
-            return check;
+            return !check;
         }
         catch(IOException e)
         {
