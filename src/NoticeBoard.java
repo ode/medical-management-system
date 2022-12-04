@@ -1,6 +1,7 @@
 import java.time.*;
 import java.util.*;
 import java.io.*;
+import java.nio.file.*;
 
 class Notice {
     private Doctor doctor;
@@ -48,11 +49,45 @@ public class NoticeBoard {
         return new ArrayList<Notice>(noticeBoard); // copy for safety
     }
 
-    public void showNoticeBoard() throws FileNotFoundException{
+    public void showNoticeBoard() throws FileNotFoundException {
         Scanner file = new Scanner(new File("noticeboard.txt"));
         while (file.hasNextLine()) {
             System.out.println(file.nextLine());
         }
+    }
+
+    public void updateNoticeBoard() throws FileNotFoundException, IOException {
+        System.out.println("Enter ID of doctor to modify timings of");
+        Scanner sc = new Scanner(System.in);
+        String id = sc.next();
+
+        System.out.println("Enter days, semi-colon separated");
+        String days = sc.next();
+
+        System.out.println("Enter start time, HH:mm");
+        String start = sc.next();
+
+        System.out.println("Enter end time, HH:mm");
+        String end = sc.next();
+
+        File newFile = new File("newticeboard.txt");
+        newFile.createNewFile();
+
+        FileWriter newf = new FileWriter("newticeboard.txt");
+        Scanner old = new Scanner(new File("noticeboard.txt"));
+        while (old.hasNextLine()) {
+            String s = old.nextLine();
+            if (s.startsWith(id)) {
+                String[] ok = s.split(",")
+                ok[3] = days;
+                ok[4] = start + ";" + end;
+                newf.write(String.join(",", ok) + '\n');
+            } else {
+                newf.write(s + '\n');
+            }
+        }
+
+        Files.move(Paths.get("newticeboard.txt"), Paths.get("noticeboard.txt"), StandardCopyOption.REPLACE_EXISTING);
     }
 
     static public Day parseDay(String s) {

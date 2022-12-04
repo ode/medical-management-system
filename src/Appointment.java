@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.sql.Timestamp;
 
 public class Appointment {
     Appointment() {
