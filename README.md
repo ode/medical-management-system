@@ -25,6 +25,6 @@ If the user is already registered, they simply enter their bitsID and password, 
 
 ## Contributors
 1. Gautam Jajoo - [@gautamjajoo](https://github.com/gautamjajoo)
-2. Harshit - [@ode](https://github.com/ode)
+2. Harshith Vasireddy - [@ode](https://github.com/ode)
 3. Abhishek
 4. Yash
